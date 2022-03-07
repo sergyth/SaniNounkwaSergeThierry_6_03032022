@@ -52,7 +52,6 @@
      .then( res => res.json())
      .then(data => {
         let photographers = data.photographers;
-        console.log(photographers);
         photographers.forEach((photographer) => {                
         document.querySelector('.photographer_section').innerHTML += createCard(photographer)
             });
@@ -62,13 +61,15 @@
    function createCard(photographer){
     return `
     <article>
-        <a>
+        <a href='photographer.html?${photographer.id}'>
             <img src='../assets/photographers/${photographer.portrait}'/>
             <h2>${photographer.name}</h2>
         </a>
-        <h3>${photographer.city}, ${photographer.country}</h3>
-        <p>${photographer.tagline}</p>
-        <h4>${photographer.price}/jour</h4>
+        <div>
+            <h3>${photographer.city}, ${photographer.country}</h3>
+            <p>${photographer.tagline}</p>
+            <h4>${photographer.price}/jour</h4>
+        </div>
 
     </article>
             `;

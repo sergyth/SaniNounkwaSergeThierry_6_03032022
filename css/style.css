@@ -48,6 +48,9 @@ h1 {
     font-size: 36px;
     line-height: 47px;
 }
+.photographer_section article a {
+   text-decoration: none;
+}
 .photographer_section article h3 {
     color: #901C1C;
     font-size: 13px;
