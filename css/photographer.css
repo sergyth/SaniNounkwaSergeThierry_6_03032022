@@ -6,6 +6,20 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.photographer-profile_img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; 
+    object-fit: cover;
+}
+h2{
+    color: #D3573C;
+    font-size: 24px;
+    line-height: 31px;
 }
 
 .contact_button {

@@ -61,7 +61,7 @@
    function createCard(photographer){
     return `
     <article>
-        <a href='photographer.html?${photographer.id}'>
+        <a href='photographer.html?id=${photographer.id}'>
             <img src='../assets/photographers/${photographer.portrait}'/>
             <h2>${photographer.name}</h2>
         </a>
