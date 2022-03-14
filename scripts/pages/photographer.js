@@ -13,12 +13,28 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
     .then((res) => res.json())
     .then((data)=> {
         let photographer = data.photographers.find(item => item.id == id);
-        console.log(photographer.id);
         console.log(data)
-        let medias = data.media.find(item => item.photographerId == id);
+        let medias = data.media.filter(item => item.photographerId == id);
         console.log(medias);
         document.querySelector('.photograph-header').innerHTML += displayProfile(photographer);
-        document.querySelector('#main').innerHTML.appendChild += displayDropdownMenu()
+        document.querySelector('#main').innerHTML += displayDropdownMenu();
+        const gallery = document.createElement('section');
+        gallery.classList.add('gallery');
+        document.querySelector('#main').appendChild(gallery);
+        let totalLikes = 0;
+        medias.forEach(media => {
+          totalLikes += media.likes
+          if(media.image){
+            
+            document.querySelector('.gallery').innerHTML += displayGallery(media);
+          }
+          
+        })
+       const likesBox = document.createElement('div');
+       likesBox.className = 'totalLikes';
+       likesBox.innerHTML = displayLikes(photographer)
+       document.querySelector('#main').appendChild(likesBox);
+       
 
     });
 
@@ -46,5 +62,34 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
           </div>
           
        `
-
     }
+
+    function displayDropdownMenu (){
+      return`
+        <div class="dropdown-menu">
+          <label for ="dropdown-menu_block">Trier par</label>
+          <select id='dropdown-menu_block'>
+            <i class="fa-solid fa-circle-chevron-up fa-3x"></i> 
+            <option value ='popularité' class="dropdown-menu_block-item">Popularité</option>
+            <option value ='Date' class="dropdown-menu_block-item">Date</option>
+            <option value ='Titre' class="dropdown-menu_block-item">Titre</option>
+          </select>
+        </div>
+      `
+    }
+    function displayGallery(media){
+      return `
+      
+        <article class='gallery-block-item'>
+          <img src='../assets/images/${media.image}' class='gallery-img'/>
+          <div class="gallery-item-title">
+            <p class='gallery_item-title'>${media.title}</p>
+            <p  class='gallery_item-likes'>${media.likes}
+              <i class="fa-solid fa-heart "></i>
+            </p>
+          </div>
+
+        </article>        
+      `
+    }
+    
