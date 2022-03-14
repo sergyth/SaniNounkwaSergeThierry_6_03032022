@@ -31,8 +31,8 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
           
         })
        const likesBox = document.createElement('div');
-       likesBox.className = 'totalLikes';
-       likesBox.innerHTML = displayLikes(photographer)
+       likesBox.classList.add('totalLikes');
+       likesBox.innerHTML = displayLikes(photographer,totalLikes);
        document.querySelector('#main').appendChild(likesBox);
        
 
@@ -90,6 +90,15 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
           </div>
 
         </article>        
+      `
+    }
+    function displayLikes(photographer, totalLikes){
+      return`
+        <div>
+          <span>${totalLikes}</span>
+          <span>${photographer.price}/Jour</span>  
+        </div>
+
       `
     }
     
