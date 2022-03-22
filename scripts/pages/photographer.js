@@ -15,39 +15,33 @@ fetch("../data/photographers.json")
     console.log(data);
     let medias = data.media.filter((item) => item.photographerId == id);
     console.log(medias);
-    document.querySelector(".photograph-header").innerHTML +=
-      displayProfile(photographer);
-    document.querySelector("#main").innerHTML += displayDropdownMenu();
+    displayProfile(photographer)
+    displayDropdownMenu();
     const gallery = document.createElement("section");
     gallery.classList.add("gallery");
     document.querySelector("#main").appendChild(gallery);
     let totalLikes = 0;
     medias.forEach((media) => {
-      totalLikes += media.likes;
-      if (media.image) {
-        document.querySelector(".gallery").innerHTML += displayGallery(media);
+        displayMedia(media, photographer);
       }
-    });
+    );
     const likesBox = document.createElement("div");
     likesBox.classList.add("totalLikes");
     likesBox.innerHTML = displayLikes(photographer, totalLikes);
     document.querySelector("#main").appendChild(likesBox);
   });
 
-function displayProfile(photographer) {
+function displayProfile(photographer){
+    document.querySelector(".photograph-header").innerHTML =
+    renderProfile(photographer);
+  }
+
+function renderProfile(photographer) {
   return `
           <div>
-            <h1>
-              ${photographer.name}
-            </h1>
-              
-            <h2>
-              ${photographer.city},  ${photographer.country}
-            </h2>
-            <p>
-              ${photographer.tagline}
-            </p>
-
+            <h1>${photographer.name}</h1>   
+            <h2>${photographer.city},  ${photographer.country}</h2>
+            <p>${photographer.tagline}</p>
           </div>
           <div>
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
@@ -59,7 +53,11 @@ function displayProfile(photographer) {
        `;
 }
 
-function displayDropdownMenu() {
+function displayDropdownMenu(){
+    document.querySelector("#main").innerHTML += renderDropdownMenu();
+}
+
+function renderDropdownMenu() {
   return `
         <div class="dropdown-menu">
           <label for ="dropdown-menu_block">Trier par</label>
@@ -72,20 +70,26 @@ function displayDropdownMenu() {
         </div>
       `;
 }
-function displayGallery(media) {
-  return `
-      
+
+function displayMedia(media, photographer){
+    totalLikes += media.likes;
+    document.querySelector(".gallery").innerHTML += renderMedia(media, photographer);
+}
+
+function renderMedia(media, photographer) {
+    if(media.image){
+    return`
         <article class='gallery-block-item'>
-          <img src='../assets/images/${media.image}' class='gallery-img'/>
+          <img src='../assets/images/${photographer.name}/${media.image}' class='gallery-img'/>
           <div class="gallery-item-title">
             <p class='gallery_item-title'>${media.title}</p>
             <p  class='gallery_item-likes'>${media.likes}
               <i class="fa-solid fa-heart "></i>
             </p>
-          </div>
-
-        </article>        
-      `;
+         </div>
+        </article>`;
+    } 
+    
 }
 function displayLikes(photographer, totalLikes) {
   return `
