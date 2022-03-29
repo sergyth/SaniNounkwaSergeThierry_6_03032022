@@ -1,6 +1,9 @@
 #contact_modal {
     display: none;
 }
+#main{
+    position: relative;
+}
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -65,22 +68,35 @@ h2{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 24px;
+    font-size: 18px;
 }
 .gallery_item-title{
     color:#901C1C ;
 }
 .gallery_item-likes{
     color:#911C1C ;
+    font-size: 16px;
 }
-.gallery-img{
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    display: block;
+.media{
+    width: 280px;
+    height: 280px;
     margin:20px 0;
     border-radius: 5px;
+    object-fit: cover;
 }
+.totalLikes{
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    background-color: #DB8876;
+    padding: 15px;
+    border-radius: 5px;
+
+}
+.totalLikes-price{
+    margin-left: 20px;
+}
+
 
 .modal {
     border-radius: 5px;
