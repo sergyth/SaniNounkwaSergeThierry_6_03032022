@@ -1,11 +1,23 @@
 class Portfolio{
+  
     constructor(){
-        this.medias        = [];
+        this.medias       = [];
         this.photographer = null;
     }
-    hydrate(medias, photographer){
-        this.medias       = medias;
+    hydrate(items, photographer){
         this.photographer = photographer;
+        
+        items.forEach(item =>
+        {
+            if(item.image){
+                this.medias.push(new Image(item, photographer));
+            }
+            if(item.video)
+            {
+                this.medias.push(new Video(item, photographer));
+            }
+        })
+
     }
     displayProfile()
      {
@@ -38,13 +50,13 @@ class Portfolio{
     {
         return `
             <div class="dropdown-menu">
-            <label for ="dropdown-menu_block">Trier par</label>
-            <select id='dropdown-menu_block'>
-                <i class="fa-solid fa-circle-chevron-up fa-3x"></i> 
-                <option value ='popularité' class="dropdown-menu_block-item">Popularité</option>
-                <option value ='Date' class="dropdown-menu_block-item">Date</option>
-                <option value ='Titre' class="dropdown-menu_block-item">Titre</option>
-            </select>
+                <label for ="dropdown-menu_block">Trier par</label>
+                <select id='dropdown-menu_block'>
+                    <i class="fa-solid fa-circle-chevron-up fa-3x"></i> 
+                    <option value ='popularité' class="dropdown-menu_block-item">Popularité</option>
+                    <option value ='Date' class="dropdown-menu_block-item">Date</option>
+                    <option value ='Titre' class="dropdown-menu_block-item">Titre</option>
+                </select>
             </div>`;
     }
       
@@ -54,43 +66,12 @@ class Portfolio{
         gallery.classList.add("gallery");
         document.querySelector("#main").appendChild(gallery);
         this.medias.forEach((media) => {
-            document.querySelector(".gallery").innerHTML += this.renderMedia(media, this.photographer);
+            document.querySelector(".gallery").innerHTML += media.render();
         });
         
     }
       
-    renderMedia(media, photographer) 
-    {
-        if (media.image)
-         {
-            return `
-            <article class='gallery-block-item'>
-                <img src='../assets/images/${this.photographer.name}/${media.image}' class='media' />
-                <div class="gallery-item-title">
-                    <p class='gallery_item-title'>${media.title}</p>
-                    <p  class='gallery_item-likes'>${media.likes}
-                    <i class="fa-solid fa-heart "></i>
-                    </p>
-                </div>
-            </article>`;
-        }
-        
-        if (media.video)
-         {
-            return `
-            <article class='gallery-block-item'>
-                <video controls class='media'>
-                    <source src="../assets/images/${this.photographer.name}/${media.video}" type="video/mp4" >   
-                </video>
-                <div class="gallery-item-title">
-                    <p class='gallery_item-title'>${media.title}</p>
-                    <p  class='gallery_item-likes'>${media.likes}
-                    <i class="fa-solid fa-heart "></i>
-                    </p>
-                </div>
-            </article>`;
-        }
-    }
+   
     displayTotal()
     {
         let totalLikes = 0;

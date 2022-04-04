@@ -1,9 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-const params = new Proxy(new URLSearchParams(window.location.search), {
-  get: (searchParams, prop) => searchParams.get(prop),
-});
-const id = params.id;
+
+const id = getId()
 
 /*data photographers
  */
@@ -22,3 +20,10 @@ fetch("../data/photographers.json")
     portfolio.displayTotal();
   });
 
+
+  function getId(){
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    return params.id
+  }
