@@ -6,16 +6,11 @@ class Portfolio{
     }
     hydrate(items, photographer){
         this.photographer = photographer;
-        
+        let factory = new MediaFactory(photographer);
         items.forEach(item =>
         {
-            if(item.image){
-                this.medias.push(new Image(item, photographer));
-            }
-            if(item.video)
-            {
-                this.medias.push(new Video(item, photographer));
-            }
+            this.medias.push(factory.build(item));
+           
         })
 
     }
