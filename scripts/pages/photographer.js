@@ -18,6 +18,7 @@ fetch("../data/photographers.json")
     portfolio.displayMedia();
     portfolio.displayTotal();
     portfolio.listenForLikes();
+    portfolio.listenForContact();
   });
 
 

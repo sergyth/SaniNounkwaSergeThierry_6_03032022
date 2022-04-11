@@ -87,7 +87,7 @@ h2{
 .totalLikes{
     position: absolute;
     bottom: 0;
-    right: 50px;
+    right:                                                50px;
     background-color: #DB8876;
     padding: 15px;
     border-radius: 5px;

@@ -77,6 +77,13 @@ class Portfolio {
       }),
     );
   }
+  listenForContact()
+  {
+      document.querySelector('.contact_button').addEventListener('click', () =>{
+       document.querySelector('#contact_modal').innerHTML= displayModal();
+          console.log('click')
+      })
+  }
 
   renderTotal(photographer, totalLikes) {
     return `

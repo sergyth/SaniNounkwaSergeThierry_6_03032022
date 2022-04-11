@@ -3,8 +3,8 @@ export function displayModal() {
 	modal.style.display = "block";
 }
 
-export function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-}
+// export function closeModal() {
+//     const modal = document.getElementById("contact_modal");
+//     modal.style.display = "none";
+// }
 
