@@ -7,14 +7,17 @@ class Video extends Media {
   }
   render() {
     return `
-        <article class='gallery-block-item'>
+        <article class='gallery-block-item'  data-id= ${this.id}>
             <video class='media'controls>
                 <source src='../assets/images/${this.photographer.name}/${this.video}' class='media' />
             </video>
             <div class="gallery-item-title">
                 <p class='gallery_item-title'>${this.title}</p>
-                <p  class='gallery_item-likes'>${this.likes}
-                <i class="fa-solid fa-heart "></i>
+                <p  class='gallery_item-likes likes-count'>${this.likes}</p>
+                <div class="like-button" >
+                  <i class="fa-solid fa-heart ">
+                </i>
+            </div>
                 </p>
             </div>
         </article>`;

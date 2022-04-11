@@ -7,12 +7,15 @@ class Image extends Media{
     }
     render() {
         return `
-            <article class='gallery-block-item'>
+            <article class='gallery-block-item' data-id= ${this.id}>
                 <img src='../assets/images/${this.photographer.name}/${this.image}' class='media' />
                 <div class="gallery-item-title">
                     <p class='gallery_item-title'>${this.title}</p>
-                    <p  class='gallery_item-likes'>${this.likes}
-                    <i class="fa-solid fa-heart "></i>
+                    <p  class='gallery_item-likes likes-count'>${this.likes}
+                    <div class="like-button" >
+                        <i class="fa-solid fa-heart ">
+                        </i>
+                    </div>
                     </p>
                 </div>
             </article>`;

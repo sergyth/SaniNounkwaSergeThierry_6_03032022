@@ -13,11 +13,11 @@ fetch("../data/photographers.json")
     let medias = data.media.filter((item) => item.photographerId == id);
     let portfolio = new Portfolio();
     portfolio.hydrate(medias, photographer);
-    console.log(portfolio)
     portfolio.displayProfile();
     portfolio.displayDropdownMenu();
     portfolio.displayMedia();
     portfolio.displayTotal();
+    portfolio.listenForLikes();
   });
 
 
