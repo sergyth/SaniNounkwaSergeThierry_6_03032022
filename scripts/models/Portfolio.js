@@ -1,3 +1,6 @@
+
+import MediaFactory from '../factories/MediaFactory.js';
+import {displayModal} from '../utils/contactForm.js'
 class Portfolio{
   
     constructor(){
@@ -24,15 +27,15 @@ class Portfolio{
     {
         return `
             <div>
-            <h1>${this.photographer.name}</h1>   
-            <h2>${this.photographer.city},  ${this.photographer.country}</h2>
-            <p>${this.photographer.tagline}</p>
+                <h1>${this.photographer.name}</h1>   
+                <h2>${this.photographer.city},  ${this.photographer.country}</h2>
+                <p>${this.photographer.tagline}</p>
             </div>
             <div>
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                <button class="contact_button">Contactez-moi</button>
             </div>
             <div>
-            <img src='../assets/photographers/${this.photographer.portrait}' class='photographer-profile_img'/>
+                <img src='../assets/photographers/${this.photographer.portrait}' class='photographer-profile_img'/>
             </div>`;
     }
       
@@ -89,3 +92,7 @@ class Portfolio{
             </div>`;
     }
 }
+
+
+
+export default Portfolio;

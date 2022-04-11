@@ -1,3 +1,7 @@
+import Media from '../models/Media.js';
+import Video from '../models/Video.js';
+import Image from '../models/Image.js';
+
 class MediaFactory{
     constructor(photographer){
        this.photographer = photographer;
@@ -15,3 +19,4 @@ class MediaFactory{
         }
     }
 }
+export default MediaFactory;

@@ -1,12 +1,9 @@
-class Image{
+import Media from './Media.js';
+class Image extends Media{
     constructor(data, photographer){
-       this.id =  data.id;
-       this.photographer = photographer;
-       this.title = data.title;
+     super(data, photographer)
        this.image = data.image;
-       this.likes = data.likes;
-       this.date = data.date;
-       this.price = data.price
+     
     }
     render() {
         return `
@@ -21,3 +18,4 @@ class Image{
             </article>`;
     }
 }
+export default Image;

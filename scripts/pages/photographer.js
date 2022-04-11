@@ -1,5 +1,5 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
+import Portfolio from '../models/Portfolio.js';
 
 const id = getId()
 
