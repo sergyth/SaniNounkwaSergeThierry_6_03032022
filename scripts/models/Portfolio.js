@@ -14,7 +14,10 @@ class Portfolio {
   }
   displayProfile() {
     document.querySelector(".photograph-header").innerHTML =
-      this.renderProfile();
+    this.renderProfile();
+    const likesBox = document.createElement("div");
+    likesBox.classList.add("totalLikes");
+    document.querySelector("#main").appendChild(likesBox);
   }
 
   renderProfile() {
@@ -63,10 +66,8 @@ class Portfolio {
     this.medias.forEach((media) => {
       totalLikes += media.likes;
     });
-    const likesBox = document.createElement("div");
-    likesBox.classList.add("totalLikes");
-    likesBox.innerHTML = this.renderTotal(this.photographer, totalLikes);
-    document.querySelector("#main").appendChild(likesBox);
+    document.querySelector('.totalLikes').innerHTML = this.renderTotal(totalLikes);
+   
   }
   listenForLikes() {
     document.querySelectorAll(".like-button").forEach((heart) =>
@@ -74,24 +75,25 @@ class Portfolio {
         let id =  heart.closest("article").getAttribute("data-id");
         let media = this.medias.find((media) => media.id == id);
         media.toggle();
+        this.displayTotal();
       }),
     );
   }
   listenForContact()
   {
-      document.querySelector('.contact_button').addEventListener('click', () =>{
-       document.querySelector('#contact_modal').innerHTML= displayModal();
-          console.log('click')
-      })
+    document.querySelector('.contact_button').addEventListener('click', () =>{
+      displayModal();
+      
+    })
   }
 
-  renderTotal(photographer, totalLikes) {
+  renderTotal(totalLikes) {
     return `
-            <div>
-            <span>${totalLikes}</span>
-            <i class="fa-solid fa-heart "></i>
-            <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
-            </div>`;
+      <div>
+        <span>${totalLikes}</span>
+        <i class="fa-solid fa-heart "></i>
+        <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
+      </div>`;
   }
 }
 

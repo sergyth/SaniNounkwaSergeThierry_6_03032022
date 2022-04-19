@@ -20,12 +20,18 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" />
         </header>
 				<form>
 					<div>
 						<label>Prénom</label>
-						<input />
+						<input type="text"/>
+						<label>Nom</label>
+						<input type="text" />
+						<label>Email</label>
+						<input type="email" />
+						<label for="message">Votre message</label>
+					  <textarea type="text" id="message"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

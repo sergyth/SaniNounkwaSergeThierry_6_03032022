@@ -85,7 +85,7 @@ h2{
     object-fit: cover;
 }
 .totalLikes{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right:                                                50px;
     background-color: #DB8876;
@@ -96,7 +96,9 @@ h2{
 .totalLikes-price{
     margin-left: 20px;
 }
-
+.like-button:hover{
+    cursor: pointer;
+}
 
 .modal {
     border-radius: 5px;
