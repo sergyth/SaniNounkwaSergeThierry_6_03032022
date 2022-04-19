@@ -1,5 +1,5 @@
 import MediaFactory from "../factories/MediaFactory.js";
-import { displayModal } from "../utils/contactForm.js";
+import { closeModal, displayModal } from "../utils/contactForm.js";
 class Portfolio {
   constructor() {
     this.medias = [];
@@ -12,13 +12,22 @@ class Portfolio {
       this.medias.push(factory.build(item));
     });
   }
-  displayProfile() {
+  displayProfile()
+  {
     document.querySelector(".photograph-header").innerHTML =
     this.renderProfile();
     const likesBox = document.createElement("div");
     likesBox.classList.add("totalLikes");
     document.querySelector("#main").appendChild(likesBox);
+    this.renderFormName();
+   
   }
+  renderFormName()
+    {
+      const name = document.createElement("span");
+      name.innerHTML =this.photographer.name;
+      document.querySelector('.contact-header').appendChild(name);
+    }
 
   renderProfile() {
     return `
@@ -41,15 +50,17 @@ class Portfolio {
 
   renderDropdownMenu() {
     return `
-            <div class="dropdown-menu">
-                <label for ="dropdown-menu_block">Trier par</label>
-                <select id='dropdown-menu_block'>
-                    <i class="fa-solid fa-circle-chevron-up fa-3x"></i> 
-                    <option value ='popularité' class="dropdown-menu_block-item">Popularité</option>
-                    <option value ='Date' class="dropdown-menu_block-item">Date</option>
-                    <option value ='Titre' class="dropdown-menu_block-item">Titre</option>
-                </select>
-            </div>`;
+      <div class="dropdown-menu">
+          <div class="dropdown-menu_sort">Trier par</div>
+          <div id='dropdown-menu_block'>
+            <div class="dropdown-menu_block-item">
+              Popularité
+              <span><i class="fa-solid fa-chevron-up "></i></span>
+            </div>
+            <div class="dropdown-menu_block-item">Date</div>
+            <div class="dropdown-menu_block-item">Titre</div>
+          </div>
+      </div>`;
   }
 
   displayMedia() {
@@ -80,12 +91,18 @@ class Portfolio {
     );
   }
   listenForContact()
-  {
-    document.querySelector('.contact_button').addEventListener('click', () =>{
-      displayModal();
-      
-    })
-  }
+    {
+      document.querySelector('.contact_button').addEventListener('click', () =>{
+        displayModal();
+      })
+    }
+  listenForClosingModal()
+    {
+      document.querySelector('.close_button').addEventListener('click', () =>{
+          closeModal();
+          console.log('click');
+        })
+    }
 
   renderTotal(totalLikes) {
     return `
