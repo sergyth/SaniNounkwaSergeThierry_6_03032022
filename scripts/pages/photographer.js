@@ -19,6 +19,7 @@ fetch("../data/photographers.json")
     portfolio.displayTotal();
     portfolio.listenForLikes();
     portfolio.listenForContact();
+    portfolio.listenForClosingModal();
   });
 
 
