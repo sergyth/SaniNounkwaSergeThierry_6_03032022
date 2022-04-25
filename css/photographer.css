@@ -55,21 +55,22 @@ h2{
 #dropdown-menu_block{
     margin: 0px 20px;
     padding: 10px;
-    border: 0px solid transparent;
-    background-color: #901c1c;
+ 
+    
     color: #fff;
     font-weight: 700;
     font-size: 18px;
-    display: inline-flex;
-    flex-direction: column;
     border-radius: 5px;
     width: 150px;
+    display: flex;
+
 }
 .dropdown-menu_block-item{
   height: 20px;
   padding: 10px;
+ 
   border-bottom: 1px solid #fff;
-  
+  background-color: #901c1c;
 }
 
 .dropdown-menu_block-item:last-child{
@@ -83,6 +84,19 @@ h2{
  justify-content: space-between;
   
 }
+.arrow{
+    display:none;
+}
+.arrow:active {
+    display:block;
+}
+.default{
+    border-bottom: none;
+}
+.hide{
+
+}
+
 .gallery{
     display: flex;
     margin: 0 100px;
@@ -181,9 +195,13 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+form input, #message {
     width: 100%;
-    height: 68px;
+    height: 50px;
     border: none;
     border-radius: 5px;
+    font-size: 20px;
+}
+#message{
+    min-height: 100px
 }

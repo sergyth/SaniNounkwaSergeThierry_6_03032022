@@ -19,6 +19,6 @@ class Image extends Media{
                     </p>
                 </div>
             </article>`;
-    }
+    }   
 }
 export default Image;
