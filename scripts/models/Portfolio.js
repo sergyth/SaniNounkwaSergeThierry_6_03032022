@@ -219,7 +219,8 @@ class Portfolio {
             };
           })
         }
-        this.displayMedia();      
+        this.displayMedia();
+        this.listenForLikes();      
     }
   
   sortedByDefault()
