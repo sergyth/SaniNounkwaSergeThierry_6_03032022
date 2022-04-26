@@ -170,6 +170,7 @@ class Portfolio {
   
   sortedBy(order)
     {
+      order = 'popularity';
       if(order === 'title')
         {
           this.medias.sort( (a, b) =>
@@ -185,7 +186,6 @@ class Portfolio {
             };
           })
         }
-        this.displayMedia();
 
       if(order === 'date')
         {
@@ -202,7 +202,6 @@ class Portfolio {
             };
           })
         }
-        this.displayMedia();
 
       if(order === 'popularity')
         {
@@ -223,10 +222,7 @@ class Portfolio {
         this.listenForLikes();      
     }
   
-  sortedByDefault()
-    {
-      this.sortedBy('popularity');
-    }
+ 
 
 }
 
