@@ -9,16 +9,20 @@ class Portfolio {
   displayDropdownMenu() 
     {
       document.querySelector("#main").innerHTML += this.renderDropdownMenu();
+      
     }
 
   displayMedia() 
     {
+     
       const gallery = document.createElement("article");
       gallery.classList.add("gallery");
       document.querySelector("#main").appendChild(gallery);
+      document.querySelector(".gallery").innerHTML = ' ';
       this.medias.forEach((media) => {
         document.querySelector(".gallery").innerHTML += media.render();
       });
+     
     }
 
   displayProfile()
@@ -48,7 +52,17 @@ class Portfolio {
         this.medias.push(factory.build(item));
       });
     }
-  
+  listenForDropdownMenu()
+    {
+      document.getElementById('current-sort-wrapper').addEventListener('click', () =>
+        {
+          document.getElementById('current-sort-wrapper').style.display = 'none';
+          document.getElementById('sort-options').style.display = 'block';
+          this.listenForSorting()
+        }
+      )
+    }
+    
   listenForClosingModal()
     {
       document.querySelector('.close_button').addEventListener('click', () =>{
@@ -67,6 +81,7 @@ class Portfolio {
       document.querySelector('.contact_button').addEventListener('click', () =>{
         displayModal();
       })
+      this.listenForClosingModal();
     }
   
   listenForLikes()
@@ -77,26 +92,45 @@ class Portfolio {
           let media = this.medias.find((media) => media.id == id);
           media.toggle();
           this.displayTotal();
+          console.log('click');
         }),
       );
+    }
+  listenForSorting()
+    {
+      document.querySelectorAll('.sort-option').forEach( option =>
+       {
+         option.addEventListener('click', () =>
+          {
+            let sort = option.getAttribute('data-sort');
+            document.getElementById('sort-options').style.display = 'none';
+            document.getElementById('current-sort-wrapper').style.display = 'flex';
+            document.getElementById('current-sort').innerText= sort;
+            this.sortedBy (sort);
+            
+          })
+       })
     }
 
   renderDropdownMenu()
     {
       return `
         <div class="dropdown-menu">
-          <div class="dropdown-menu_sort">Trier par</div>
+          <div class="dropdown-menu_title">Trier par</div>
           <div id='dropdown-menu_block'>
-            <div class="dropdown-menu_block-item default">
-              <span >Popularité</span>
-              <span class='arrow'><i class="fa-solid fa-chevron-up "></i></span>
+            <div class="dropdown-menu_block-item " id="current-sort-wrapper">
+              <span id="current-sort" data-sort='popularity' >Popularité</span>
               <span class='arrow'><i class="fa-solid fa-chevron-down "></i></span>
             </div>
-            <div class="hide">
-              <div class="dropdown-menu_block-item">Popularité</div>
-              <div class="dropdown-menu_block-item">Titre</div>
-              <div class="dropdown-menu_block-item">Date</div>
-            </div>
+           
+              <div id="sort-options">
+                <div class="dropdown-menu_block-item sort-option" data-sort ="popularity">
+                  <span>Popularité</span>
+                  <span class='arrow'><i class="fa-solid fa-chevron-up "></i></span>
+                </div>
+                <div class="dropdown-menu_block-item sort-option" data-sort ="title">Titre</div>
+                <div class="dropdown-menu_block-item sort-option" data-sort ="date">Date</div>
+              </div>  
           </div>
         </div>`;
     }
@@ -133,6 +167,68 @@ class Portfolio {
           <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
         </div>`;
     }
+  
+  sortedBy(order)
+    {
+      if(order === 'title')
+        {
+          this.medias.sort( (a, b) =>
+           { 
+             if(a.title < b.title) 
+              {
+                return -1
+              };
+              
+            if(b.title < a.title) 
+            {
+              return 1
+            };
+          })
+        }
+        this.displayMedia();
+
+      if(order === 'date')
+        {
+          this.medias.sort( (a, b) =>
+           { 
+             if(a.date < b.date) 
+              {
+                return -1
+              };
+              
+            if(b.date < a.date) 
+            {
+              return 1
+            };
+          })
+        }
+        this.displayMedia();
+
+      if(order === 'popularity')
+        {
+          this.medias.sort( (a, b) =>
+           { 
+             if(a.likes < b.likes) 
+              {
+                return 1
+              };
+              
+            if(b.likes < a.likes) 
+            {
+              return -1
+            };
+          })
+        }
+        this.displayMedia();      
+    }
+  
+  sortedByDefault()
+    {
+      this.sortedBy('popularity');
+    }
+
 }
+
+
 
 export default Portfolio;

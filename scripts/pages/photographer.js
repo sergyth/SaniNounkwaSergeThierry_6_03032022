@@ -17,9 +17,14 @@ fetch("../data/photographers.json")
     portfolio.displayDropdownMenu();
     portfolio.displayMedia();
     portfolio.displayTotal();
-    portfolio.listenForLikes();
     portfolio.listenForContact();
-    portfolio.listenForClosingModal();
+    portfolio.listenForDropdownMenu();
+    portfolio.listenForLikes();
+    portfolio.listenForSorting();
+    portfolio.sortedBy();
+    portfolio.sortedByDefault();
+  
+    
   });
 
 
