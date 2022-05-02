@@ -22,7 +22,8 @@ fetch("../data/photographers.json")
     portfolio.listenForLikes();
     portfolio.listenForSorting();
     portfolio.sortedBy();
-    
+    portfolio.listenForSlider();
+   
   
     
   });

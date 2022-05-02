@@ -19,6 +19,16 @@ class Image extends Media{
                     </p>
                 </div>
             </article>`;
-    }   
+    } 
+    renderLightbox()
+    {
+        return`
+            <article class='lightbox' data-id= ${this.id}>
+                <i class="fa-solid fa-chevron-left"></i>
+                <img src='../assets/images/${this.photographer.name}/${this.image}' class='media' />
+                <i class="fa-solid fa-chevron-right"></i>
+            </article>
+        `
+    }
 }
 export default Image;

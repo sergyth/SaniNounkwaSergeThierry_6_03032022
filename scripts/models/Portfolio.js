@@ -24,6 +24,16 @@ class Portfolio {
       });
      
     }
+  displayLightbox()
+  {
+    const gallery = document.createElement("article");
+    gallery.classList.add("gallery");
+    document.querySelector("body ").appendChild(gallery);
+    document.querySelector(".gallery").innerHTML = ' ';
+    this.medias.forEach((media) => {
+      document.querySelector(".gallery").innerHTML = media.renderLightbox();
+    });
+  }
 
   displayProfile()
     {
@@ -54,13 +64,14 @@ class Portfolio {
     }
   listenForDropdownMenu()
     {
+      
       document.getElementById('current-sort-wrapper').addEventListener('click', () =>
         {
           document.getElementById('current-sort-wrapper').style.display = 'none';
           document.getElementById('sort-options').style.display = 'block';
-          this.listenForSorting()
         }
       )
+      this.listenForSorting();
     }
     
   listenForClosingModal()
@@ -92,9 +103,21 @@ class Portfolio {
           let media = this.medias.find((media) => media.id == id);
           media.toggle();
           this.displayTotal();
-          console.log('click');
         }),
       );
+    }
+  listenForSlider()
+    {
+      document.querySelectorAll('.media').forEach( media =>{
+        media.addEventListener('click', () => 
+          {
+            let id =  media.closest("article").getAttribute("data-id");
+            let item = this.medias.find((media) => media.id == id);
+            this.startSlider();
+           
+          })
+           }                                                                                                                                                                                                                                                     
+        )
     }
   listenForSorting()
     {
@@ -106,7 +129,7 @@ class Portfolio {
             document.getElementById('sort-options').style.display = 'none';
             document.getElementById('current-sort-wrapper').style.display = 'flex';
             document.getElementById('current-sort').innerText= sort;
-            this.sortedBy (sort);
+            this.sortedBy(sort);
             
           })
        })
@@ -119,17 +142,17 @@ class Portfolio {
           <div class="dropdown-menu_title">Trier par</div>
           <div id='dropdown-menu_block'>
             <div class="dropdown-menu_block-item " id="current-sort-wrapper">
-              <span id="current-sort" data-sort='popularity' >Popularité</span>
+              <span id="current-sort" data-sort='Popularité' >Popularité</span>
               <span class='arrow'><i class="fa-solid fa-chevron-down "></i></span>
             </div>
            
               <div id="sort-options">
-                <div class="dropdown-menu_block-item sort-option" data-sort ="popularity">
+                <div class="dropdown-menu_block-item sort-option" data-sort ="Popularité">
                   <span>Popularité</span>
                   <span class='arrow'><i class="fa-solid fa-chevron-up "></i></span>
                 </div>
-                <div class="dropdown-menu_block-item sort-option" data-sort ="title">Titre</div>
-                <div class="dropdown-menu_block-item sort-option" data-sort ="date">Date</div>
+                <div class="dropdown-menu_block-item sort-option" data-sort ="Titre">Titre</div>
+                <div class="dropdown-menu_block-item sort-option" data-sort ="Date">Date</div>
               </div>  
           </div>
         </div>`;
@@ -168,10 +191,10 @@ class Portfolio {
         </div>`;
     }
   
-  sortedBy(order)
+  sortedBy(order = 'Popularité')
     {
-      order = 'popularity';
-      if(order === 'title')
+      
+      if(order === 'Titre')
         {
           this.medias.sort( (a, b) =>
            { 
@@ -187,7 +210,7 @@ class Portfolio {
           })
         }
 
-      if(order === 'date')
+      if(order === 'Date')
         {
           this.medias.sort( (a, b) =>
            { 
@@ -203,7 +226,7 @@ class Portfolio {
           })
         }
 
-      if(order === 'popularity')
+      if(order === 'Popularité')
         {
           this.medias.sort( (a, b) =>
            { 
@@ -218,14 +241,16 @@ class Portfolio {
             };
           })
         }
-        this.displayMedia();
-        this.listenForLikes();      
+      this.displayMedia();
+      this.listenForLikes();      
     }
-  
- 
+  startSlider(index)
+  {
+   this.displayLightbox();
 
+  }
 }
-
+ 
 
 
 export default Portfolio;
