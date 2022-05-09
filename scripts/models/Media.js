@@ -17,7 +17,7 @@ class Media{
             this.likes++;
             this.hasBeenLiked = true;
         }
-       document.querySelector(`article [data-id='${this.id}'] .likes-count`).innerHTML=this.likes
+       document.querySelector(`article[data-id='${this.id}'] .likes-count`).innerHTML = this.likes;
      }
 }
 

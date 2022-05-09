@@ -7,32 +7,28 @@ class Video extends Media {
   }
   render() {
     return `
-        <article class='gallery-block-item'  data-id= ${this.id}>
-            <div class="media">
-              <video class='media' type='video/mp4' controls>
-                  <source src='../assets/images/${this.photographer.name}/${this.video}'/>
-              </video>
+      <article class='gallery-block-item'  data-id= '${this.id}'>
+          <video  class='media' type='video/mp4' controls='false'>
+              <source src='../assets/images/${this.photographer.name}/${this.video}'  class='video' controls='false'/>
+          </video>         
+          <div class="gallery-item-title">
+            <p class='gallery_item-title'>${this.title}</p>
+            <p  class='gallery_item-likes likes-count'>${this.likes}</p>
+            <div class="like-button" >
+              <i class="fa-solid fa-heart "></i>
             </div>
-            <div class="gallery-item-title">
-                <p class='gallery_item-title'>${this.title}</p>
-                <p  class='gallery_item-likes likes-count'>${this.likes}</p>
-                <div class="like-button" >
-                  <i class="fa-solid fa-heart ">
-                </i>
-            </div>
-                </p>
-            </div>
-        </article>`;
+          </div>
+      </article>`;
   }
   renderLightbox()
     {
-        return`
-            <article class='lightbox' data-id= ${this.id}>
-                <i class="fa-solid fa-chevron-left"></i>
-                <img src='../assets/images/${this.photographer.name}/${this.video}' class='media' />
-                <i class="fa-solid fa-chevron-right"></i>
-            </article>
-        `;
+      return`
+        <article class='lightbox-media' data-id= ${this.id}>
+          <video  type='video/mp4' controls='false' class='media-slider'>
+            <source src='../assets/images/${this.photographer.name}/${this.video}'/>
+          </video>  
+        </article>
+      `;
     }
 }
 

@@ -4,8 +4,17 @@ class Portfolio {
   constructor() {
     this.medias = [];
     this.photographer = null;
+   
   }
 
+  closeSlider()
+    {
+      document.getElementById('close_slider').addEventListener('click', () =>
+      {
+        document.getElementById('main').style.display = 'block';
+        document.getElementById('slider_wrapper').style.display = 'none';
+      });
+    }
   displayDropdownMenu() 
     {
       document.querySelector("#main").innerHTML += this.renderDropdownMenu();
@@ -14,26 +23,21 @@ class Portfolio {
 
   displayMedia() 
     {
-     
-      const gallery = document.createElement("article");
+      const gallery = document.createElement("section");
       gallery.classList.add("gallery");
       document.querySelector("#main").appendChild(gallery);
-      document.querySelector(".gallery").innerHTML = ' ';
-      this.medias.forEach((media) => {
-        document.querySelector(".gallery").innerHTML += media.render();
-      });
-     
+      document.querySelector(".gallery").innerHTML = '';
+      this.medias.forEach((media) =>
+       {
+          document.querySelector(".gallery").innerHTML += media.render();
+       }); 
     }
-  displayLightbox()
-  {
-    const gallery = document.createElement("article");
-    gallery.classList.add("gallery");
-    document.querySelector("body ").appendChild(gallery);
-    document.querySelector(".gallery").innerHTML = ' ';
-    this.medias.forEach((media) => {
-      document.querySelector(".gallery").innerHTML = media.renderLightbox();
-    });
-  }
+  displayLightbox(currentIndex)
+    {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('slider_wrapper').style.display = 'flex';
+      this.showMedia(currentIndex);
+    }
 
   displayProfile()
     {
@@ -78,6 +82,7 @@ class Portfolio {
     {
       document.querySelector('.close_button').addEventListener('click', () =>{
           closeModal();
+          
         })
       document.addEventListener('keydown', (event) =>{
        if(event.keyCode == 27)
@@ -108,16 +113,15 @@ class Portfolio {
     }
   listenForSlider()
     {
-      document.querySelectorAll('.media').forEach( media =>{
+      document.querySelectorAll('.media').forEach( media =>
+      {
         media.addEventListener('click', () => 
           {
             let id =  media.closest("article").getAttribute("data-id");
-            let item = this.medias.find((media) => media.id == id);
-            this.startSlider();
-           
-          })
-           }                                                                                                                                                                                                                                                     
-        )
+            let currentIndex = this.medias.findIndex((media) => media.id == id);
+            this.startSlider(currentIndex);
+          })   
+      })
     }
   listenForSorting()
     {
@@ -190,6 +194,18 @@ class Portfolio {
           <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
         </div>`;
     }
+  showMedia(currentIndex)
+    {
+      document.getElementById('lightbox').innerHTML = this.medias[currentIndex].renderLightbox();
+    }
+  showNext(currentIndex) 
+    {
+      this.showMedia(currentIndex);
+    }
+  showPrevious(currentIndex) 
+    {
+      this.showMedia(currentIndex);  
+    }
   
   sortedBy(order = 'Popularité')
     {
@@ -242,15 +258,34 @@ class Portfolio {
           })
         }
       this.displayMedia();
-      this.listenForLikes();      
+      this.listenForLikes();
+      this.listenForSlider();      
     }
-  startSlider(index)
-  {
-   this.displayLightbox();
-
-  }
+  startSlider(currentIndex)
+    {
+      this.displayLightbox(currentIndex);
+      document.getElementById('next').addEventListener('click', () => {
+      if(currentIndex < (this.medias.length-1)){
+        currentIndex++;
+        this.showNext(currentIndex);
+      }else{
+        currentIndex = 0;
+        this.showNext(0);
+      }
+      })
+      document.getElementById('previous').addEventListener('click', () => {
+        if(currentIndex == 0)
+        {
+          this.showPrevious(9);
+          currentIndex = 9;
+        }else if(currentIndex > 0){
+          currentIndex--
+          this.showPrevious(currentIndex);
+        }
+      }) 
+      this.closeSlider(); 
+    }
 }
- 
 
 
 export default Portfolio;
