@@ -11,10 +11,21 @@ class Portfolio {
     {
       document.getElementById('close_slider').addEventListener('click', () =>
       {
-        document.getElementById('main').style.display = 'block';
-        document.getElementById('slider_wrapper').style.display = 'none';
+        this.hideSlider();
       });
     }
+
+  closing()
+      {
+        document.addEventListener('keydown', (event) =>{
+          if(event.key == 'Escape')
+           {
+             closeModal();
+             this.hideSlider();
+           }
+        })
+      }
+
   displayDropdownMenu() 
     {
       document.querySelector("#main").innerHTML += this.renderDropdownMenu();
@@ -23,15 +34,17 @@ class Portfolio {
 
   displayMedia() 
     {
-      const gallery = document.createElement("section");
+      const gallery = document.createElement("article");
       gallery.classList.add("gallery");
       document.querySelector("#main").appendChild(gallery);
       document.querySelector(".gallery").innerHTML = '';
       this.medias.forEach((media) =>
        {
+          
           document.querySelector(".gallery").innerHTML += media.render();
        }); 
     }
+
   displayLightbox(currentIndex)
     {
       document.getElementById('main').style.display = 'none';
@@ -58,6 +71,12 @@ class Portfolio {
       document.querySelector('.totalLikes').innerHTML = this.renderTotal(totalLikes);
     }
 
+  hideSlider()
+    {
+      document.getElementById('main').style.display = 'block';
+      document.getElementById('slider_wrapper').style.display = 'none';
+    }
+
   hydrate(items, photographer) 
     {
       this.photographer = photographer;
@@ -66,6 +85,7 @@ class Portfolio {
         this.medias.push(factory.build(item));
       });
     }
+
   listenForDropdownMenu()
     {
       
@@ -82,14 +102,8 @@ class Portfolio {
     {
       document.querySelector('.close_button').addEventListener('click', () =>{
           closeModal();
-          
         })
-      document.addEventListener('keydown', (event) =>{
-       if(event.keyCode == 27)
-        {
-          closeModal();
-        }
-     })
+        this.closing();
     }
 
   listenForContact()
@@ -104,20 +118,21 @@ class Portfolio {
     {
       document.querySelectorAll(".like-button").forEach((heart) =>
         heart.addEventListener("click", () => {
-          let id =  heart.closest("article").getAttribute("data-id");
+          let id =  heart.closest("div").getAttribute("data-id");
           let media = this.medias.find((media) => media.id == id);
           media.toggle();
           this.displayTotal();
         }),
       );
     }
+
   listenForSlider()
     {
       document.querySelectorAll('.media').forEach( media =>
       {
         media.addEventListener('click', () => 
           {
-            let id =  media.closest("article").getAttribute("data-id");
+            let id =  media.closest("div").getAttribute("data-id");
             let currentIndex = this.medias.findIndex((media) => media.id == id);
             this.startSlider(currentIndex);
           })   
@@ -181,7 +196,7 @@ class Portfolio {
             <button class="contact_button">Contactez-moi</button>
         </div>
         <div>
-            <img src='../assets/photographers/${this.photographer.portrait}' class='photographer-profile_img'/>
+            <img src='../assets/photographers/${this.photographer.portrait}' alt='photo de profile de ${this.photographer.name}' class='photographer-profile_img'/>
         </div>`;
     }
 
@@ -194,18 +209,18 @@ class Portfolio {
           <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
         </div>`;
     }
+
   showMedia(currentIndex)
     {
       document.getElementById('lightbox').innerHTML = this.medias[currentIndex].renderLightbox();
     }
-  showNext(currentIndex) 
+
+  showSlide(currentIndex) 
     {
       this.showMedia(currentIndex);
     }
-  showPrevious(currentIndex) 
-    {
-      this.showMedia(currentIndex);  
-    }
+
+
   
   sortedBy(order = 'Popularité')
     {
@@ -261,26 +276,27 @@ class Portfolio {
       this.listenForLikes();
       this.listenForSlider();      
     }
+
   startSlider(currentIndex)
     {
       this.displayLightbox(currentIndex);
       document.getElementById('next').addEventListener('click', () => {
       if(currentIndex < (this.medias.length-1)){
         currentIndex++;
-        this.showNext(currentIndex);
+        this.showSlide(currentIndex);
       }else{
         currentIndex = 0;
-        this.showNext(0);
+        this.showSlide(0);
       }
       })
       document.getElementById('previous').addEventListener('click', () => {
         if(currentIndex == 0)
         {
-          this.showPrevious(9);
+          this.showSlide(9);
           currentIndex = 9;
         }else if(currentIndex > 0){
           currentIndex--
-          this.showPrevious(currentIndex);
+          this.showSlide(currentIndex);
         }
       }) 
       this.closeSlider(); 

@@ -5,11 +5,12 @@ class Video extends Media {
     super(data, photographer);
     this.video = data.video;
   }
+  
   render() {
     return `
-      <article class='gallery-block-item'  data-id= '${this.id}'>
+      <div class='gallery-block-item'  data-id= '${this.id}'>
           <video  class='media' type='video/mp4' controls='false'>
-              <source src='../assets/images/${this.photographer.name}/${this.video}'  class='video' controls='false'/>
+              <source src='../assets/images/${this.photographer.name}/${this.video}' type='video/mp4' class='video' controls='false'/>
           </video>         
           <div class="gallery-item-title">
             <p class='gallery_item-title'>${this.title}</p>
@@ -18,17 +19,18 @@ class Video extends Media {
               <i class="fa-solid fa-heart "></i>
             </div>
           </div>
-      </article>`;
+      </div>`;
   }
+
   renderLightbox()
     {
       return`
-        <article class='lightbox-media' data-id= ${this.id}>
+        <div class='lightbox-media' data-id= ${this.id}>
           <video  type='video/mp4' controls='false' class='media-slider'>
             <source src='../assets/images/${this.photographer.name}/${this.video}'/>
           </video>
           <h3>${this.title}</h3>  
-        </article>
+        </div>
       `;
     }
 }

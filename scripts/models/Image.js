@@ -1,13 +1,12 @@
-import Media from './Media.js';
-class Image extends Media{
-    constructor(data, photographer){
-     super(data, photographer)
-       this.image = data.image;
-     
-    }
-    render() {
-        return `
-            <article class='gallery-block-item' data-id= '${this.id}'>
+import Media from "./Media.js";
+class Image extends Media {
+  constructor(data, photographer) {
+    super(data, photographer);
+    this.image = data.image;
+  }
+  render() {
+    return `
+            <div class='gallery-block-item' data-id= '${this.id}'>
                 <img src='../assets/images/${this.photographer.name}/${this.image}' alt='photo de ${this.photographer.name}' class='media' />
                 <div class="gallery-item-title">
                     <p class='gallery-title'>${this.title}</p>
@@ -16,18 +15,17 @@ class Image extends Media{
                         <i class="fa-solid fa-heart "></i>
                     </div>
                 </div>
-            </article>`;
-    } 
-    renderLightbox()
-    {
-        return`
-            <article class='lightbox-media' data-id= '${this.id}'>  
-                <div className="media-wrapper">
+            </div>`;
+  }
+  renderLightbox() {
+    return `
+            <div class="media-wrapper" >  
+                <div class='lightbox-media' data-id= '${this.id}'>
                     <img src='../assets/images/${this.photographer.name}/${this.image}' alt='photo de ${this.photographer.name}'  class='media-slider' />
                     <h3>${this.title}</h3>
-                </div>>
-            </article>
-        `
-    }
+                </div>
+            </div>
+        `;
+  }
 }
 export default Image;
