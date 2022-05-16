@@ -26,7 +26,8 @@ class Video extends Media {
         <article class='lightbox-media' data-id= ${this.id}>
           <video  type='video/mp4' controls='false' class='media-slider'>
             <source src='../assets/images/${this.photographer.name}/${this.video}'/>
-          </video>  
+          </video>
+          <h3>${this.title}</h3>  
         </article>
       `;
     }

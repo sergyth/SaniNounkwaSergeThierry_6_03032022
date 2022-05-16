@@ -226,7 +226,7 @@ form input, #message {
     align-items: center;
     width: 100%;
     height: 100%;
-    
+    background-color: #E5E5E5;
 }
 #lightbox, .lightbox-media{
     width: 60vw;
@@ -234,27 +234,37 @@ form input, #message {
     display: block;
    
 }
+.media-wrapper, .media-slider {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .media-slider{
-    width: 50%;
-    height: 100%;
+ height: 80%;
     object-fit: cover;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-
+  
 }
-#previous, #next{
+#previous, #next, .chevron{
     margin: 20px;
     color: #901C1C;
     cursor: pointer;
+    width: 48px;
+    height: 30px;
+    font-weight: 500;
 }
 #close_slider{
     position: absolute;
     top: 20px;
     right: 20px;
-    color: #901C1C;
-    background-color:#901C1C;
     border-radius: 50%;
     cursor: pointer;
+    color: #901C1C;
+    width: 58px;
+    height: 60px;
+
 }

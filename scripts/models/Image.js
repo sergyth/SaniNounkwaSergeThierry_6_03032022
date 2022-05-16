@@ -8,7 +8,7 @@ class Image extends Media{
     render() {
         return `
             <article class='gallery-block-item' data-id= '${this.id}'>
-                <img src='../assets/images/${this.photographer.name}/${this.image}' class='media' />
+                <img src='../assets/images/${this.photographer.name}/${this.image}' alt='photo de ${this.photographer.name}' class='media' />
                 <div class="gallery-item-title">
                     <p class='gallery-title'>${this.title}</p>
                     <p  class='gallery-likes likes-count'>${this.likes}</p>
@@ -22,7 +22,10 @@ class Image extends Media{
     {
         return`
             <article class='lightbox-media' data-id= '${this.id}'>  
-                <img src='../assets/images/${this.photographer.name}/${this.image}' class='media-slider' />
+                <div className="media-wrapper">
+                    <img src='../assets/images/${this.photographer.name}/${this.image}' alt='photo de ${this.photographer.name}'  class='media-slider' />
+                    <h3>${this.title}</h3>
+                </div>>
             </article>
         `
     }
