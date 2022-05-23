@@ -8,7 +8,7 @@ class Video extends Media {
   
   render() {
     return `
-      <div class='gallery-block-item'  data-id= '${this.id}'>
+      <article class='gallery-block-item'  data-id= '${this.id}'>
           <video  class='media' type='video/mp4' controls='false'>
               <source src='../assets/images/${this.photographer.name}/${this.video}' type='video/mp4' class='video' controls='false'/>
           </video>         
@@ -19,7 +19,7 @@ class Video extends Media {
               <i class="fa-solid fa-heart "></i>
             </div>
           </div>
-      </div>`;
+      </article>`;
   }
 
   renderLightbox()

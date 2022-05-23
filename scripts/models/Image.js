@@ -6,8 +6,8 @@ class Image extends Media {
   }
   render() {
     return `
-            <div class='gallery-block-item' data-id= '${this.id}'>
-                <img src='../assets/images/${this.photographer.name}/${this.image}' alt='photo de ${this.photographer.name}' class='media' />
+            <article class='gallery-block-item' data-id= '${this.id}'>
+                <img src='../assets/images/${this.photographer.name}/${this.image}' alt='' tabindex='0' class='media' />
                 <div class="gallery-item-title">
                     <p class='gallery-title'>${this.title}</p>
                     <p  class='gallery-likes likes-count'>${this.likes}</p>
@@ -15,13 +15,13 @@ class Image extends Media {
                         <i class="fa-solid fa-heart "></i>
                     </div>
                 </div>
-            </div>`;
+            </article>`;
   }
   renderLightbox() {
     return `
             <div class="media-wrapper" >  
                 <div class='lightbox-media' data-id= '${this.id}'>
-                    <img src='../assets/images/${this.photographer.name}/${this.image}' alt='photo de ${this.photographer.name}'  class='media-slider' />
+                    <img src='../assets/images/${this.photographer.name}/${this.image}' alt='' aria-label='image closeup view' tabindex='0' class='media-slider' />
                     <h3>${this.title}</h3>
                 </div>
             </div>

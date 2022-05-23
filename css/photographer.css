@@ -70,6 +70,8 @@ h2 {
   border-bottom: 1px solid #fff;
   background-color: #901c1c;
   width: 125px;
+  font-size: 18px;
+  color: white
 }
 
 .arrow {
@@ -83,10 +85,20 @@ h2 {
 #current-sort-wrapper {
   justify-content: space-between;
   align-items: center;
+  border: none;
+  cursor: pointer;
 }
 #sort-options {
   display: none;
-  justify-content: space-between;
+ 
+ 
+}
+.sort-option{
+  border: none;
+  display: block;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
 }
 #sort-options .dropdown-menu_block-item:first-child {
   display: flex;
@@ -122,6 +134,7 @@ h2 {
   margin: 20px 0;
   border-radius: 5px;
   object-fit: cover;
+  cursor: pointer;        
 }
 .totalLikes {
   position: fixed;
