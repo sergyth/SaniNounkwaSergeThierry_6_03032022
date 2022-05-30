@@ -1,18 +1,17 @@
-   
-   
-    function getPhotographers () {
-      fetch('../data/photographers.json')
-     .then( res => res.json())
-     .then(data => {
-        let photographers = data.photographers;
-        photographers.forEach((photographer) => {                
-        document.querySelector('.photographer_section').innerHTML += createCard(photographer)
-            });
-        })       
-    } 
+function getPhotographers () {
+  fetch('../data/photographers.json')
+    .then((res) => res.json())
+    .then((data) => {
+      const photographers = data.photographers
+      photographers.forEach((photographer) => {
+        document.querySelector('.photographer_section').innerHTML +=
+          createCard(photographer)
+      })
+    })
+}
 
-   function createCard(photographer){
-    return `
+function createCard (photographer) {
+  return `
     <article>
         <a href='photographer.html?id=${photographer.id}' tabindex="0">
             <img src='../assets/photographers/${photographer.portrait}' alt="" aria-labelledby='${photographer.name}'/>
@@ -25,9 +24,7 @@
         </div>
 
     </article>
-            `;
-    }
-    
-getPhotographers();
-    
-  
+            `
+}
+
+getPhotographers()

@@ -1,12 +1,12 @@
-import Media from './Media.js';
+import Media from './Media.js'
 
 class Video extends Media {
-  constructor(data, photographer) {
-    super(data, photographer);
-    this.video = data.video;
+  constructor (data, photographer) {
+    super(data, photographer)
+    this.video = data.video
   }
-  
-  render() {
+
+  render () {
     return `
       <article class='gallery-block-item'  data-id= '${this.id}'>
           <video  class='media' type='video/mp4' controls='false' tabindex="0">
@@ -19,20 +19,19 @@ class Video extends Media {
               <div class="like-button" tabindex="0" ><i class="fa-solid fa-heart "></i></div>
             </div>
           </div>
-      </article>`;
+      </article>`
   }
 
-  renderLightbox()
-    {
-      return`
+  renderLightbox () {
+    return `
         <div class='lightbox-media' data-id= ${this.id}>
           <video  type='video/mp4' controls='false' class='media-slider'>
             <source src='../assets/images/${this.photographer.name}/${this.video}'/>
           </video>
           <h3>${this.title}</h3>  
         </div>
-      `;
-    }
+      `
+  }
 }
 
-export default Video;
+export default Video

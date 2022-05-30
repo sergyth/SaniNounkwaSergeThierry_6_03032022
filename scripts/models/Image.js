@@ -1,10 +1,11 @@
-import Media from "./Media.js";
+import Media from './Media.js'
 class Image extends Media {
-  constructor(data, photographer) {
-    super(data, photographer);
-    this.image = data.image;
+  constructor (data, photographer) {
+    super(data, photographer)
+    this.image = data.image
   }
-  render() {
+
+  render () {
     return `
             <article class='gallery-block-item' data-id= '${this.id}'>
                 <img src='../assets/images/${this.photographer.name}/${this.image}' alt='${this.title}' tabindex='0' class='media' />
@@ -15,9 +16,10 @@ class Image extends Media {
                       <div class="like-button" tabindex="0"><i class="fa-solid fa-heart "></i></div>
                     </div>
                 </div>
-            </article>`;
+            </article>`
   }
-  renderLightbox() {
+
+  renderLightbox () {
     return `
             <div class="media-wrapper" >  
                 <div class='lightbox-media' data-id= '${this.id}'>
@@ -25,7 +27,7 @@ class Image extends Media {
                     <h3>${this.title}</h3>
                 </div>
             </div>
-        `;
+        `
   }
 }
-export default Image;
+export default Image
