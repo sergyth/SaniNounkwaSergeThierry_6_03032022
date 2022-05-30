@@ -64,6 +64,19 @@ class Portfolio {
     });
   }
 
+  listenForCloseSlider() {
+    document.getElementById("close_slider").addEventListener("focus", () => {
+      this.listenForKeyDown();
+    });
+  }
+
+  listenForClosingModal() {
+    document.querySelector(".close_button").addEventListener("click", () => {
+      closeModal();
+    });
+    this.listenForKeyDown();
+  }
+
   listenForDropdownMenu() {
     document
       .getElementById("current-sort-wrapper")
@@ -74,13 +87,6 @@ class Portfolio {
     this.listenForSorting();
   }
 
-  listenForClosingModal() {
-    document.querySelector(".close_button").addEventListener("click", () => {
-      closeModal();
-    });
-    this.listenForKeyDown();
-  }
-
   listenForContact() {
     document.querySelector(".contact_button").addEventListener("click", () => {
       displayModal();
@@ -89,17 +95,31 @@ class Portfolio {
   }
 
   listenForLikes() {
-    document.querySelectorAll(".like-button").forEach((heart) =>
-   {   heart.addEventListener("click", () => {
+    document.querySelectorAll(".like-button").forEach((heart) => {
+      heart.addEventListener("click", () => {
         let id = heart.closest("article").getAttribute("data-id");
         let media = this.medias.find((media) => media.id == id);
         media.toggle();
         this.displayTotal();
-       
-      })
+        
+      });
     });
   }
+
+  listenForLikesWithEnter(){
+    document.querySelectorAll(".like-button").forEach((heart) => {
+      heart.addEventListener("keydown", (event) => {
+        if(event.key == 'Enter'){
+          let id = heart.closest("article").getAttribute("data-id");
+          let media = this.medias.find((media) => media.id == id);
+          media.toggle();
+          this.displayTotal();   
+        }       
+      })
+    });
   
+  }
+
   listenForKeyDown() {
     document.addEventListener("keydown", (event) => {
       if (event.key == "Escape") {
@@ -112,9 +132,11 @@ class Portfolio {
       if (event.key == "ArrowLeft") {
         this.previous();
       }
+      if (event.key == "Enter") {
+        this.hideSlider();
+      }
     });
   }
-
 
   listenForSlider() {
     document.querySelectorAll(".media").forEach((media) => {
@@ -136,19 +158,19 @@ class Portfolio {
       });
     });
   }
-  
-  next(){
+
+  next() {
     if (this.currentIndex < this.medias.length - 1) {
       this.currentIndex++;
     } else {
-     this.currentIndex = 0;
+      this.currentIndex = 0;
     }
-    this.showSlide(this.currentIndex)
+    this.showSlide(this.currentIndex);
   }
 
-  previous(){
+  previous() {
     if (this.currentIndex == 0) {
-      this.currentIndex = this.medias.length -1;
+      this.currentIndex = this.medias.length - 1;
     } else if (this.currentIndex > 0) {
       this.currentIndex--;
     }
@@ -158,7 +180,7 @@ class Portfolio {
   renderDropdownMenu() {
     return `
         <div class="dropdown-menu">
-          <div class="dropdown-menu_title" aria-label='trier par'>Trier par</div>
+          <div class="dropdown-menu_title" aria-label='trier par' tabindex="0">Trier par</div>
           <div id='dropdown-menu_block'>
             <button class="dropdown-menu_block-item " id="current-sort-wrapper">
               <span id="current-sort" data-sort='Popularité' >Popularité</span>
@@ -186,21 +208,23 @@ class Portfolio {
   renderProfile() {
     return `
         <div>
-            <h1>${this.photographer.name}</h1>   
-            <h2>${this.photographer.city},  ${this.photographer.country}</h2>
-            <p>${this.photographer.tagline}</p>
+            <h1 tabindex="0">${this.photographer.name}</h1>   
+            <div tabindex="0">
+              <h2>${this.photographer.city},  ${this.photographer.country}</h2>
+              <p>${this.photographer.tagline}</p>
+            </div>
         </div>
         <div>
             <button class="contact_button" aria-label="contact Me">Contactez-moi</button>
         </div>
         <div>
-            <img src='../assets/photographers/${this.photographer.portrait}' alt='' class='photographer-profile_img'/>
+            <img src='../assets/photographers/${this.photographer.portrait}' alt='photo de ${this.photographer.name}' class='photographer-profile_img'  tabindex="0"/>
         </div>`;
   }
 
   renderTotal(totalLikes) {
     return `
-        <div>
+        <div tabindex="0">
           <span>${totalLikes}</span>
           <i class="fa-solid fa-heart " role='img' aria-hidden="true"></i>
           <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
@@ -255,6 +279,7 @@ class Portfolio {
     this.displayMedia();
     this.listenForLikes();
     this.listenForSlider();
+    this.listenForLikesWithEnter();
   }
 
   startSlider() {
@@ -265,10 +290,9 @@ class Portfolio {
     document.getElementById("previous").addEventListener("click", () => {
       this.previous();
     });
-  
-    this.closeSlider();
-  } 
 
+    this.closeSlider();
+  }
 }
 
 export default Portfolio;

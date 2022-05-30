@@ -11,6 +11,7 @@
   bottom: 0;
   right: 0;
 }
+
 #main {
   position: relative;
   z-index: 1;
@@ -24,12 +25,14 @@
   justify-content: space-around;
   align-items: center;
 }
+
 .photographer-profile_img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
+
 h2 {
   color: #d3573c;
   font-size: 24px;
@@ -48,14 +51,17 @@ h2 {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .dropdown-menu {
   margin: 20px 100px;
   display: flex;
   align-items: start;
 }
+
 .dropdown-menu_title {
   margin-right: 20px;
 }
+
 #dropdown-menu_block {
   color: #fff;
   font-weight: 700;
@@ -64,6 +70,7 @@ h2 {
   width: 300px;
   display: flex;
 }
+
 .dropdown-menu_block-item {
   height: 40px;
   padding: 10px;
@@ -82,17 +89,20 @@ h2 {
 .default {
   border-bottom: none;
 }
+
 #current-sort-wrapper {
   justify-content: space-between;
   align-items: center;
   border: none;
   cursor: pointer;
 }
+
 #sort-options {
   display: none;
  
  
 }
+
 .sort-option{
   border: none;
   display: block;
@@ -100,6 +110,7 @@ h2 {
   color: #fff;
   cursor: pointer;
 }
+
 #sort-options .dropdown-menu_block-item:first-child {
   display: flex;
   justify-content: space-between;
@@ -110,23 +121,35 @@ h2 {
   margin: 0 100px;
   flex-wrap: wrap;
 }
+
 .gallery-block-item {
   margin-right: 80px;
 }
+
 .gallery-item-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
 }
+
+.gallery-title{
+  white-space: nowrap; 
+  width: 200px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
 .gallery-title,
 .heart {
   color: #901c1c;
 }
+
 .gallery-likes {
   color: #911c1c;
   font-size: 16px;
 }
+
 .media,
 .video {
   width: 280px;
@@ -136,6 +159,7 @@ h2 {
   object-fit: cover;
   cursor: pointer;        
 }
+
 .totalLikes {
   position: fixed;
   bottom: 0;
@@ -144,12 +168,22 @@ h2 {
   padding: 15px;
   border-radius: 5px;
 }
+
 .totalLikes-price {
   margin-left: 20px;
 }
+
+.like-wrapper{
+  display: flex;
+}
+
 .like-button {
   color: #911c1c;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
 }
+
 .like-button:hover {
   cursor: pointer;
 }
@@ -216,9 +250,11 @@ form input,
   border-radius: 5px;
   font-size: 20px;
 }
+
 #message {
   min-height: 100px;
 }
+
 #slider_wrapper {
   display: none;
   position: absolute;
@@ -231,6 +267,7 @@ form input,
   background-color: #fff;
   z-index: 100;
 }
+
 #slider {
   display: flex;
   justify-content: center;
@@ -239,6 +276,7 @@ form input,
   height: 100%;
   background-color: #e5e5e5;
 }
+
 .media-wrapper {
   width: 100%;
 }
@@ -271,6 +309,7 @@ form input,
   height: 30px;
   font-weight: 500;
 }
+
 #close_slider {
   position: absolute;
   top: 20px;

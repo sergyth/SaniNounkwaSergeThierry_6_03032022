@@ -23,6 +23,7 @@ fetch("../data/photographers.json")
     portfolio.listenForSorting();
     portfolio.sortedBy();
     
+    
    
   
     

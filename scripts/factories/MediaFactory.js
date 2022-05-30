@@ -7,16 +7,9 @@ class MediaFactory{
        this.photographer = photographer;
  
     }
-    build(item){
-             
-        if(item.image)
-        {
-          return  new Image(item, this.photographer);
-        }
-       if(item.video)
-        {
-          return  new Video(item, this.photographer);
-        }
-    }
+
+    build(item){        
+      return item.image? new Image(item, this.photographer) : new Video(item, this.photographer);
+  }
 }
 export default MediaFactory;
