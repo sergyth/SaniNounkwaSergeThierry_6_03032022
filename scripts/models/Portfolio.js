@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable array-callback-return */
+
 import MediaFactory from '../factories/MediaFactory.js'
 import { closeModal, displayModal } from '../utils/contactForm.js'
 class Portfolio {
@@ -139,7 +139,7 @@ class Portfolio {
   }
 
   listenForSlider () {
-    document.querySelectorAll('.media').forEach((media) => {
+    document.querySelectorAll('button.media').forEach((media) => {
       media.addEventListener('click', () => {
         const id = media.closest('article').getAttribute('data-id')
         this.currentIndex = this.medias.findIndex((media) => media.id == id)
@@ -279,8 +279,9 @@ class Portfolio {
     }
     this.displayMedia()
     this.listenForLikes()
-    this.listenForSlider()
     this.listenForLikesWithEnter()
+    this.listenForSlider()
+    this.listenForSliderWithEnter()
   }
 
   startSlider () {

@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/d6d4c9e8be.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
-  <body id="'body">
+  <body id="body">
     <header>
       <a href="/index.html"><img src="assets/images/logo.png" class="logo" alt="logo de fisheye" /></a>
     </header>
@@ -17,11 +17,11 @@
     </main>
     <div id="slider_wrapper">
       <div id="slider">
-        <div id="previous" aria-label="previous image" > <i class="fa-solid fa-chevron-left chevron" role="img" aria-hidden="true" tabindex='0'></i></div>
+        <div id="previous" aria-label="previous image" > <i class="fa-solid fa-chevron-left chevron" role="img" aria-hidden="true" tabindex='0' aria-label="fleche gauche"></i></div>
         <div id="lightbox"> </div>
-        <div id="next" aria-label="next image" ><i class="fa-solid fa-chevron-right chevron" role="img" aria-hidden="true" tabindex='0'></i></div>
+        <div id="next" aria-label="next image" ><i class="fa-solid fa-chevron-right chevron" role="img" aria-hidden="true" tabindex='0' aria-label="fleche droite" ></i></div>
       </div>
-      <i id='close_slider' class="fa-solid fa-xmark" role="img" aria-hidden="true" tabindex="0"></i>
+      <i id='close_slider' class="fa-solid fa-xmark" role="img" aria-hidden="true" tabindex="0" aria-label="bouton de fermeture du slider"></i>
     </div>
 
     <div id="contact_modal">
@@ -30,20 +30,20 @@
           <div class="contact-header">
             <h2>Contactez-moi</h2>
           </div>
-          <img src="assets/icons/close.svg" class="close_button" aria-label="close dialog"/>
+          <img src="assets/icons/close.svg" alt="close icon" class="close_button" aria-label="close dialog"/>
         </header>
 				<form >
 					<div>
 						<label for="prenom">Prénom</label>
 						<input name="prenom" id="prenom" type="text"  autofocus/>
-						<label>Nom</label>
-						<input type="text" />
-						<label>Email</label>
-						<input type="email" />
+						<label for="nom">Nom</label>
+						<input type="text" name="nom" id="nom" autofocus/>
+						<label for="email">Email</label>
+						<input type="email"  name="email" id="nom" autofocus/>
 						<label for="message">Votre message</label>
-					  <textarea type="text" id="message"></textarea>
+					  <textarea type="text" id="message" name="message" id="nom" autofocus></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="envoyer votre message" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>

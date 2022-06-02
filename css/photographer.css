@@ -150,15 +150,25 @@ h2 {
   font-size: 16px;
 }
 
+button.media{
+
+  border: unset;
+  padding: unset;
+  background :unset;
+  margin: unset;            
+}
+
 .media,
-.video {
+.video
+ {
   width: 280px;
   height: 280px;
   margin: 20px 0;
   border-radius: 5px;
   object-fit: cover;
-  cursor: pointer;        
+  cursor: pointer;      
 }
+
 
 .totalLikes {
   position: fixed;

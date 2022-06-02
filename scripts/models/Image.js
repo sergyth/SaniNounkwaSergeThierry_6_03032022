@@ -8,12 +8,12 @@ class Image extends Media {
   render () {
     return `
             <article class='gallery-block-item' data-id= '${this.id}'>
-                <img src='../assets/images/${this.photographer.name}/${this.image}' alt='${this.title}' tabindex='0' class='media' />
+                <button class='media' type='button' tabindex="-1"><img src='../assets/images/${this.photographer.name}/${this.image}' alt='${this.title}' class='media' tabindex="0" /></button>
                 <div class="gallery-item-title">
                     <p class='gallery-title' tabindex="0">${this.title}</p>
                     <div class="like-wrapper">
                       <p  class='gallery-likes likes-count'>${this.likes}</p>
-                      <div class="like-button" tabindex="0"><i class="fa-solid fa-heart "></i></div>
+                      <div class="like-button" tabindex="0"><i class="fa-solid fa-heart" aria-label='likes'></i></div>
                     </div>
                 </div>
             </article>`
