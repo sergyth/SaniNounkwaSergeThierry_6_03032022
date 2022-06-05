@@ -14,7 +14,7 @@ function createCard (photographer) {
   return `
     <article>
         <a href='photographer.html?id=${photographer.id}' tabindex="0">
-            <img src='../assets/photographers/${photographer.portrait}' alt="" aria-labelledby='${photographer.name}'/>
+            <img src='../assets/photographers/${photographer.portrait}' alt="${photographer.name}" />
             <h2>${photographer.name}</h2>
         </a>
         <div tabindex="0">

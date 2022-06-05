@@ -4,9 +4,6 @@ import Portfolio from '../models/Portfolio.js'
 
 const id = getId()
 
-/* data photographers
- */
-
 fetch('../data/photographers.json')
   .then((res) => res.json())
   .then((data) => {
