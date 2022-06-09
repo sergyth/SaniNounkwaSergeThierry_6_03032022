@@ -39,7 +39,8 @@ h2 {
   line-height: 31px;
 }
 
-.contact_button {
+.contact_button,
+#contact_button {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -192,11 +193,11 @@ button.media{
   display: flex;
   align-items: center;
   margin-left: 5px;
-}
-
-.like-button:hover {
+  border: none;
+  background-color: #fff;
   cursor: pointer;
 }
+
 
 .modal {
   border-radius: 5px;
@@ -259,10 +260,28 @@ form input,
   border: none;
   border-radius: 5px;
   font-size: 20px;
+  outline: none;
 }
 
 #message {
   min-height: 100px;
+}
+.invalid {
+  border: 2px solid red;
+}
+
+.valid {
+  border: 1px solid green;
+}
+
+#submit{
+width: 100px;
+height: 50px;
+border-radius: 5px;
+border: none;
+cursor: pointer;
+background-color: #901C1C;
+color: #fff;
 }
 
 #slider_wrapper {
@@ -327,6 +346,10 @@ form input,
   border-radius: 50%;
   cursor: pointer;
   color: #901c1c;
-  width: 58px;
-  height: 60px;
+  width: 30px;
+  height:30px;
+  border: 1px solid #901c1c;
 }
+
+
+

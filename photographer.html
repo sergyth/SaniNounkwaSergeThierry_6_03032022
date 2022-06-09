@@ -21,7 +21,7 @@
         <div id="lightbox"> </div>
         <div id="next" aria-label="next image" ><i class="fa-solid fa-chevron-right chevron" role="img" aria-hidden="true" tabindex='0' aria-label="fleche droite" ></i></div>
       </div>
-      <i id='close_slider' class="fa-solid fa-xmark" role="img" aria-hidden="true" tabindex="0" aria-label="bouton de fermeture du slider"></i>
+      <button id='close_slider' tabindex="0"><i class="fa-solid fa-xmark" role="img" aria-hidden="true"  aria-label="bouton de fermeture du slider"></i></button>
     </div>
 
     <div id="contact_modal">
@@ -32,18 +32,18 @@
           </div>
           <img src="assets/icons/close.svg" alt="close icon" class="close_button" aria-label="close dialog"/>
         </header>
-				<form >
+				<form action="" method="POST"  id="myForm">
 					<div>
 						<label for="prenom">Prénom</label>
-						<input name="prenom" id="prenom" type="text"  autofocus/>
+						<input name="prenom"  type="text"  id="prenom" required autofocus/>
 						<label for="nom">Nom</label>
-						<input type="text" name="nom" id="nom" autofocus/>
+						<input type="text" name="nom" required id="nom" />
 						<label for="email">Email</label>
-						<input type="email"  name="email" id="nom" autofocus/>
+						<input type="text"  name="email"  required id="email" placeholder="exemple@fisheye.fr"/>
 						<label for="message">Votre message</label>
-					  <textarea type="text" id="message" name="message" id="nom" autofocus></textarea>
+					  <textarea type="email"  name="message" required minlength="10" maxlength="500" id="message" placeholder="votre message ici" ></textarea>
 					</div>
-          <button class="contact_button" aria-label="envoyer votre message" type="submit">Envoyer</button>
+          <button aria-label="envoyer votre message" type="submit" id="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>

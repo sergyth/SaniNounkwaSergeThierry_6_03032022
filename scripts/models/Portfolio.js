@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable eqeqeq */
 
 import MediaFactory from '../factories/MediaFactory.js'
@@ -29,11 +30,15 @@ class Portfolio {
     })
   }
 
+  // affiche le slider
+
   displayLightbox () {
     document.getElementById('main').style.display = 'none'
     document.getElementById('slider_wrapper').style.display = 'flex'
     this.showMedia()
   }
+
+  // affiche le profile du photographe generé par le renderProfile du photographe en question
 
   displayProfile () {
     document.querySelector('.photograph-header').innerHTML =
@@ -43,6 +48,8 @@ class Portfolio {
     document.querySelector('#main').appendChild(likesBox)
     this.renderFormName()
   }
+
+  // affiche l'ensemble des likes de tous les medias present sur la page du photographe
 
   displayTotal () {
     let totalLikes = 0
@@ -63,6 +70,7 @@ class Portfolio {
     const factory = new MediaFactory(photographer)
     items.forEach((item) => {
       this.medias.push(factory.build(item))
+      console.log(item)
     })
   }
 
@@ -107,19 +115,6 @@ class Portfolio {
     })
   }
 
-  listenForLikesWithEnter () {
-    document.querySelectorAll('.like-button').forEach((heart) => {
-      heart.addEventListener('keydown', (event) => {
-        if (event.key == 'Enter') {
-          const id = heart.closest('article').getAttribute('data-id')
-          const media = this.medias.find((media) => media.id == id)
-          media.toggle()
-          this.displayTotal()
-        }
-      })
-    })
-  }
-
   listenForKeyDown () {
     document.addEventListener('keydown', (event) => {
       if (event.key == 'Escape') {
@@ -131,9 +126,6 @@ class Portfolio {
       }
       if (event.key == 'ArrowLeft') {
         this.previous()
-      }
-      if (event.key == 'Enter') {
-        this.hideSlider()
       }
     })
   }
@@ -160,6 +152,8 @@ class Portfolio {
     })
   }
 
+  // permet d'afficher le media suivant dans  la lightbox losqu'on clique sur la fleche droite
+
   next () {
     if (this.currentIndex < this.medias.length - 1) {
       this.currentIndex++
@@ -178,58 +172,62 @@ class Portfolio {
     this.showSlide(this.currentIndex)
   }
 
+  // permet de générer le code necessaire pour afficher le menu deroulant de la page photograhe
+
   renderDropdownMenu () {
     return `
-        <div class="dropdown-menu">
-          <div class="dropdown-menu_title" aria-label='trier par' tabindex="0">Trier par</div>
-          <div id='dropdown-menu_block'>
-            <button class="dropdown-menu_block-item " id="current-sort-wrapper">
-              <span id="current-sort" data-sort='Popularité' >Popularité</span>
-              <span class='arrow'><i class="fa-solid fa-chevron-down "></i></span>
+      <div class="dropdown-menu">
+        <div class="dropdown-menu_title" aria-label='trier par' tabindex="0">Trier par</div>
+        <div id='dropdown-menu_block'>
+          <button class="dropdown-menu_block-item " id="current-sort-wrapper">
+            <span id="current-sort" data-sort='Popularité' >Popularité</span>
+            <span class='arrow'><i class="fa-solid fa-chevron-down "></i></span>
+          </button>
+        
+          <div id="sort-options">
+            <button class="dropdown-menu_block-item sort-option" data-sort ="Popularité">
+              <span>Popularité</span>
+              <span class='arrow'><i class="fa-solid fa-chevron-up "></i></span>
             </button>
-          
-            <div id="sort-options">
-              <button class="dropdown-menu_block-item sort-option" data-sort ="Popularité">
-                <span>Popularité</span>
-                <span class='arrow'><i class="fa-solid fa-chevron-up "></i></span>
-              </button>
-              <button class="dropdown-menu_block-item sort-option" data-sort ="Titre">Titre</button>
-              <button class="dropdown-menu_block-item sort-option" data-sort ="Date">Date</button>
-            </div>  
-          </div>
-        </div>`
+            <button class="dropdown-menu_block-item sort-option" data-sort ="Titre">Titre</button>
+            <button class="dropdown-menu_block-item sort-option" data-sort ="Date">Date</button>
+          </div>  
+        </div>
+      </div>`
   }
 
   renderFormName () {
-    const name = document.createElement('span')
-    name.innerHTML = this.photographer.name
-    document.querySelector('.contact-header').appendChild(name)
+    const nom = document.createElement('span')
+    nom.innerHTML = this.photographer.name
+    document.querySelector('.contact-header').appendChild(nom)
   }
+
+  /** genere le html necessaire pour afficher le profile de chaque page photographe */
 
   renderProfile () {
     return `
-        <div>
-            <h1 tabindex="0">${this.photographer.name}</h1>   
-            <div tabindex="0">
-              <h2>${this.photographer.city},  ${this.photographer.country}</h2>
-              <p>${this.photographer.tagline}</p>
-            </div>
+      <div>
+        <h1 tabindex="0"> ${this.photographer.name} </h1>   
+        <div tabindex="0">
+          <h2>${this.photographer.city},  ${this.photographer.country}</h2>
+          <p>${this.photographer.tagline}</p>
         </div>
-        <div>
-            <button class="contact_button" aria-label="contact Me">Contactez-moi</button>
-        </div>
-        <div>
-            <img src='../assets/photographers/${this.photographer.portrait}' alt='photo de ${this.photographer.name}' class='photographer-profile_img'  tabindex="0"/>
-        </div>`
+      </div>
+      <div>
+        <button class="contact_button" aria-label="contact Me">Contactez-moi</button>
+      </div>
+      <div>
+        <img src='../assets/photographers/${this.photographer.portrait}' alt='photo de ${this.photographer.name}' class='photographer-profile_img' tabindex="0"/>
+      </div>`
   }
 
   renderTotal (totalLikes) {
     return `
-        <div tabindex="0">
-          <span>${totalLikes}</span>
-          <i class="fa-solid fa-heart " role='img' aria-hidden="true"></i>
-          <span class="totalLikes-price">${this.photographer.price}/Jour</span>  
-        </div>`
+      <div tabindex="0">
+        <span>${totalLikes}</span>
+        <i class="fa-solid fa-heart " role='img' aria-hidden="true"></i>
+        <span class="totalLikes-price">${this.photographer.price}€/Jour</span>  
+      </div>`
   }
 
   showMedia () {
@@ -279,9 +277,7 @@ class Portfolio {
     }
     this.displayMedia()
     this.listenForLikes()
-    this.listenForLikesWithEnter()
     this.listenForSlider()
-    this.listenForSliderWithEnter()
   }
 
   startSlider () {
