@@ -9,6 +9,8 @@ class Media {
     this.hasBeenLiked = false
   }
 
+  // permet d'ajouter ou retirer un like et d' afficher le resultat
+
   toggle () {
     if (this.hasBeenLiked) {
       this.likes--

@@ -5,6 +5,8 @@ class Image extends Media {
     this.image = data.image
   }
 
+  // genere le html pour afficher les images du photographe dans la page du photographe
+
   render () {
     return `
       <article class='gallery-block-item' data-id= '${this.id}'>
@@ -18,6 +20,8 @@ class Image extends Media {
         </div>
       </article>`
   }
+
+  // genere le html pour afficher les images du photographe dans le slider
 
   renderLightbox () {
     return `

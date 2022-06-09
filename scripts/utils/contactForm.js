@@ -13,28 +13,23 @@ const message = document.getElementById('message')
 prenom.addEventListener('change', () => {
   isFirstnameValid(prenom)
 })
+
 nom.addEventListener('change', () => {
   isNameValid(nom)
 })
+
 email.addEventListener('change', () => {
   isEmailValid(email)
 })
+
 message.addEventListener('change', () => {
   isMessageValid(message)
 })
+
 form.addEventListener('submit', (e) => {
   e.preventDefault()
   validateForm()
 })
-
-export function displayModal () {
-  modal.style.display = 'flex'
-  document.getElementById('prenom').focus()
-}
-
-export function closeModal () {
-  modal.style.display = 'none'
-}
 
 /** validation du formulaire */
 function isEmailValid (email) {
@@ -88,9 +83,18 @@ function isNameValid (nom) {
   return true
 }
 
+export function closeModal () {
+  modal.style.display = 'none'
+}
+
+export function displayModal () {
+  modal.style.display = 'flex'
+  document.getElementById('prenom').focus()
+}
+
 export function validateForm () {
   if (isFirstnameValid(prenom) && isNameValid(nom) && isEmailValid(email) && isMessageValid(message)) {
-    console.log(`prenom ${prenom.value} \n nom ${nom.value}\n  email ${email.value} \n  message ${message.value}`)
+    console.log(`prenom: ${prenom.value} \n nom: ${nom.value}\n  email: ${email.value} \n  message: ${message.value}`)
     form.reset()
   }
 }

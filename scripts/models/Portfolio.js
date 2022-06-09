@@ -70,7 +70,6 @@ class Portfolio {
     const factory = new MediaFactory(photographer)
     items.forEach((item) => {
       this.medias.push(factory.build(item))
-      console.log(item)
     })
   }
 
@@ -172,7 +171,7 @@ class Portfolio {
     this.showSlide(this.currentIndex)
   }
 
-  // permet de générer le code necessaire pour afficher le menu deroulant de la page photograhe
+  // permet de générer le code necessaire pour afficher le menu deroulant de la page photographe
 
   renderDropdownMenu () {
     return `
@@ -196,13 +195,15 @@ class Portfolio {
       </div>`
   }
 
+  // permet de générer le html
+
   renderFormName () {
     const nom = document.createElement('span')
     nom.innerHTML = this.photographer.name
     document.querySelector('.contact-header').appendChild(nom)
   }
 
-  /** genere le html necessaire pour afficher le profile de chaque page photographe */
+  // genere le html necessaire pour afficher le profile de chaque page photographe
 
   renderProfile () {
     return `
@@ -221,6 +222,8 @@ class Portfolio {
       </div>`
   }
 
+  // genere le html pour  afficher le total des likes et le tarif journalier du photographe
+
   renderTotal (totalLikes) {
     return `
       <div tabindex="0">
@@ -230,6 +233,8 @@ class Portfolio {
       </div>`
   }
 
+  // affiche le media dans le slider
+
   showMedia () {
     document.getElementById('lightbox').innerHTML =
       this.medias[this.currentIndex].renderLightbox()
@@ -238,6 +243,8 @@ class Portfolio {
   showSlide () {
     this.showMedia()
   }
+
+  // permet de filtrer les medias
 
   sortedBy (order = 'Popularité') {
     if (order === 'Titre') {

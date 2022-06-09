@@ -6,6 +6,8 @@ class Video extends Media {
     this.video = data.video
   }
 
+  // genere le html pour afficher les videos du photographe dans la page du photographe
+
   render () {
     return `
       <article class='gallery-block-item'  data-id= '${this.id}'>
@@ -23,6 +25,8 @@ class Video extends Media {
         </div>
       </article>`
   }
+
+  // genere le html pour afficher les videos du photographe dans le slider
 
   renderLightbox () {
     return `
