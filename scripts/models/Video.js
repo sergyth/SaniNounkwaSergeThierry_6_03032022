@@ -10,20 +10,16 @@ class Video extends Media {
 
   render () {
     return `
-      <article class='gallery-block-item'  data-id= '${this.id}'>
-        <button class = 'media' type='button' >
-          <video  class='media' type='video/mp4' controls='false'  tabindex='-1' poster='../assets/images/miniature.jpg' >
-            <source src='../assets/images/${this.photographer.name}/${this.video}' type='video/mp4' class='video' controls='false' tabindex='-1'/>
-          </video>
-        </button>      
-        <div class="gallery-item-title">
-          <p class='gallery-title' tabindex="0">${this.title}</p>
-          <div class="like-wrapper">
-            <p class='gallery-likes likes-count' >${this.likes}</p>
-            <button class="like-button" ><i class="fa-solid fa-heart " aria-label=likes'></i></button>
-          </div>
-        </div>
-      </article>`
+    <article class='gallery-block-item' data-id= '${this.id}'>
+    <button class='media' type='button' tabindex="-1"><img src='../assets/images/${this.photographer.name}/miniature.jpg' alt='${this.title}' class='media' tabindex="0" /></button>
+    <div class="gallery-item-title">
+      <p class='gallery-title' tabindex="0">${this.title}</p>
+      <div class="like-wrapper">
+        <p  class='gallery-likes likes-count'>${this.likes}</p>
+        <button class="like-button" ><i class="fa-solid fa-heart" aria-label='likes'></i></button>
+      </div>
+    </div>
+  </article>`
   }
 
   // genere le html pour afficher les videos du photographe dans le slider
